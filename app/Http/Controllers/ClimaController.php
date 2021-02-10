@@ -15,7 +15,9 @@ class ClimaController extends Controller
                             ->join('cidade','cidade.id','=','previsao_clima.cidade_id')
                             ->join('estado','estado.id','=','cidade.estado_id')
                             ->where('previsao_clima.data_previsao', date('Y-m-d'))
-                            ->orderBy('temperatura_maxima','DESC')      
+                            ->orderBy('previsao_clima.temperatura_maxima','DESC') 
+                            ->orderBy('cidade.nome','ASC') 
+                            ->orderBy('estado.uf','ASC')      
                             ->limit(3)  
                             ->get();
 
@@ -24,7 +26,9 @@ class ClimaController extends Controller
                             ->join('cidade','cidade.id','=','previsao_clima.cidade_id')
                             ->join('estado','estado.id','=','cidade.estado_id')
                             ->where('previsao_clima.data_previsao', date('Y-m-d'))
-                            ->orderBy('previsao_clima.temperatura_minima','ASC')      
+                            ->orderBy('previsao_clima.temperatura_minima','ASC')
+                            ->orderBy('cidade.nome','ASC') 
+                            ->orderBy('estado.uf','ASC')        
                             ->limit(3)  
                             ->get();
 
